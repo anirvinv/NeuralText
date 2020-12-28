@@ -6,6 +6,7 @@ from sklearn.preprocessing import MinMaxScaler
 train_labels = []
 train_samples = []
 
+
 for i in range(50):
     random_younger = randint(13, 64)
     train_samples.append(random_younger)
