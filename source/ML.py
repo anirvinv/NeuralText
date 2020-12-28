@@ -11,7 +11,7 @@ class LinearModel(object):
         self.X = x
         self.Y = y
         self.coeffs = np.ones(x[0].size) * random.randint(0, 10)
-        self.bias = 0
+        self.bias = np.random.randint(0, 10)
 
     def gradient(self):
         """
