@@ -3,9 +3,9 @@ import random
 
 
 class LinearModel(object):
-	"""
-	Linear regression algorithm made from scratch
-	"""
+    """
+    Linear regression algorithm made from scratch
+    """
     def __init__(self, x, y, learning_rate=0.01):
         self.learning_rate = learning_rate
         self.X = x
