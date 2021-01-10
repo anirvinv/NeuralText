@@ -97,7 +97,7 @@ class Network(object):
                 visual += self.layers[index].visual_representation() + "\n" + "  |  " * self.neurons_per_layer[index] + "\n"
                 visual += "__-__" * self.neurons_per_layer[index ] + "\n"
                 visual += "  |  " * self.neurons_per_layer[index + 1] + "\n"
-        return visual
+        return "TOP DOWN VISUAL:\n" + visual
         
 
 features = np.array([[1,2,3,4], [0,0,0,0]])
@@ -106,5 +106,3 @@ labels = np.array([1, 2, 3])
 net = Network(features, labels, 7, (1, 2, 3, 4, 3, 2,1))
 print(net.output())
 print(net.visual_representation())
-
-
