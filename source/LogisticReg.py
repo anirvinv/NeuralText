@@ -3,7 +3,7 @@ import random
 
 
 def sigmoid(num):
-    return 1 / (1 + np.e**(-1 * num))
+    return 1 / (1 + np.exp(-num))
 
 
 class Logistic(object):
@@ -26,7 +26,7 @@ class Logistic(object):
             db = 0
 
             for d in X:
-                total += np.dot(self.weights, d)
+                total += np.dot(self.weights, d) + self.bias
             total = sigmoid(total)
 
             for i in range(len(self.X[0])):
@@ -48,12 +48,13 @@ class Logistic(object):
         return prediction
 
 
-X = [[1, 2], [3, 4]]
-y = [0, 1]
+X = [[100, 150], [300, 350], [400, 300], [160, 130], [120, 130], [120, 130], [120, 130]]
+y = [0, 1, 1, 0, 0, 0, 0]
 
 model = Logistic()
 
 
 model.fit(X, y)
 
-print(model.predict([[1, 2], [10, 12]]))
+print(model.predict([[100, 150], [150, 100]]))
+print(model.weights, model.bias)
