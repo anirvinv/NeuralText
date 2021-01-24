@@ -6,6 +6,7 @@ from keras.datasets import mnist
 from keras.utils import to_categorical
 
 (train_X, train_y), (val_X, val_y) = mnist.load_data()
+
 print('Train: X=%s, y=%s' % (train_X.shape, train_y.shape))
 print('Test: X=%s, y=%s' % (val_X.shape, val_y.shape))
 
@@ -23,7 +24,11 @@ train_X = train_X/255.0
 val_X = val_X/255.0
 
 
-print(train_X.shape)
+
+print(train_X[0].shape)
+
+
+# print(train_X.shape)
 
 # cnn = tf.keras.Sequential([
 #     layers.Conv2D(32, (3,3), activation="relu", kernel_initializer="he_uniform", input_shape=(28,28,1)),
