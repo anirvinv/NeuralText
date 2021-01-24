@@ -30,21 +30,21 @@ print(train_X[0].shape)
 
 # print(train_X.shape)
 
-# cnn = tf.keras.Sequential([
-#     layers.Conv2D(32, (3,3), activation="relu", kernel_initializer="he_uniform", input_shape=(28,28,1)),
-#     layers.MaxPooling2D((2,2)),
+cnn = tf.keras.Sequential([
+    layers.Conv2D(32, (3,3), activation="relu", kernel_initializer="he_uniform", input_shape=(28,28,1)),
+    layers.MaxPooling2D((2,2)),
 
-#     layers.Flatten(),
+    layers.Flatten(),
     
-#     layers.Dense(100, activation="relu", kernel_initializer='he_uniform'),
-#     layers.Dense(10, activation='softmax')
-# ])
+    layers.Dense(100, activation="relu", kernel_initializer='he_uniform'),
+    layers.Dense(10, activation='softmax')
+])
 
-# cnn.compile(optimizer="adam", loss="categorical_crossentropy", metrics=['accuracy'])
+cnn.compile(optimizer="adam", loss="categorical_crossentropy", metrics=['accuracy'])
 
-# cnn.fit(train_X, train_y, epochs=1, batch_size=32, validation_data=(val_X, val_y))
+cnn.fit(train_X, train_y, epochs=1, batch_size=32, validation_data=(val_X, val_y))
 
-# tf.keras.models.save_model(
-#     cnn, "model", overwrite=True, include_optimizer=True, save_format=None,
-#     signatures=None, options=None
-# )
+tf.keras.models.save_model(
+    cnn, "model", overwrite=True, include_optimizer=True, save_format=None,
+    signatures=None, options=None
+)
