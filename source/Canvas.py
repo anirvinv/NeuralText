@@ -29,10 +29,9 @@ def prediction(image):
             index = i
 
     # print(predictions)
-
-    print("\n\nPrediction:", np.argmax(predictions), max)
-    return image
-
+    pred = np.argmax(predictions)
+    print("\n\nPrediction:", pred, "Confidence: ", max)
+    return image, pred
 
 pygame.init()
 
@@ -42,6 +41,8 @@ screen.fill((0, 0, 0))
 pygame.display.set_caption("Draw a Number")
 clock = pygame.time.Clock()
 
+images = []
+preds = []
 loop = True
 while loop:
     for event in pygame.event.get():
@@ -61,7 +62,9 @@ while loop:
 
         pixels = np.array(pixels)
 
-        pixels = prediction(pixels)
+        pixels, pred = prediction(pixels)
+        preds.append(pred)
+        images.append(pixels)
         screen.fill((0,0,0))
 
     px, py = pygame.mouse.get_pos()
@@ -77,16 +80,14 @@ pygame.quit()
 
 # (train_X, train_y), (val_X, val_y) = mnist.load_data()
 
-# maps = [pixels[0], train_X[0]]
+fig, ax = plt.subplots(nrows=1, ncols=len(images), figsize = (8,6))
+    
+for i, image in enumerate(images):
+    ax[i].set_title(str(preds[i]))
+    ax[i].imshow(image.reshape(28,28), cmap=plt.get_cmap('gray'))
 
-# for i in range(1):
-# 	# define subplot
-# 	plt.subplot(330 + 1 + i)
-# 	# plot raw pixel data
-# 	plt.imshow(maps[i], cmap=plt.get_cmap('gray'))
-# # show the figure
-# plt.show()
+plt.show()
 
-# # print(pixels.shape)
+# print(pixels.shape)
 
 
