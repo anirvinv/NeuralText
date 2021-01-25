@@ -10,6 +10,29 @@ loaded_model = tf.keras.models.load_model('model')
 SCREENWIDTH = 280
 SCREENHEIGHT = 280
 
+def prediction(image):
+    image = ndimage.interpolation.zoom(pixels,0.1)
+
+    image = image.reshape(1, 28,28, 1)
+    image = image/255.0
+
+    image = image.transpose()
+
+    predictions = loaded_model.predict(image)[0]
+
+    max = 0
+    index = 0
+
+    for i, pred in enumerate(predictions):
+        if pred > max:
+            max = pred
+            index = i
+
+    # print(predictions)
+
+    print("\n\nPrediction:", np.argmax(predictions), max)
+    return image
+
 
 pygame.init()
 
@@ -37,7 +60,9 @@ while loop:
             pixels.append(row)
 
         pixels = np.array(pixels)
-        loop = False
+
+        pixels = prediction(pixels)
+        screen.fill((0,0,0))
 
     px, py = pygame.mouse.get_pos()
     if pygame.mouse.get_pressed() == (1,0,0):
@@ -48,41 +73,20 @@ while loop:
 
 pygame.quit()
 
-pixels = ndimage.interpolation.zoom(pixels,0.1)
+# from keras.datasets import mnist
 
-pixels = pixels.reshape(1, 28,28, 1)
-pixels = pixels/255.0
+# (train_X, train_y), (val_X, val_y) = mnist.load_data()
 
-pixels = pixels.transpose()
+# maps = [pixels[0], train_X[0]]
 
-predictions = loaded_model.predict(pixels)[0]
+# for i in range(1):
+# 	# define subplot
+# 	plt.subplot(330 + 1 + i)
+# 	# plot raw pixel data
+# 	plt.imshow(maps[i], cmap=plt.get_cmap('gray'))
+# # show the figure
+# plt.show()
 
-max = 0
-index = 0
-
-for i, pred in enumerate(predictions):
-    if pred > max:
-        max = pred
-        index = i
-
-# print(predictions)
-
-print("Prediction:", np.argmax(predictions), max)
-
-from keras.datasets import mnist
-
-(train_X, train_y), (val_X, val_y) = mnist.load_data()
-
-maps = [pixels[0], train_X[0]]
-
-for i in range(1):
-	# define subplot
-	plt.subplot(330 + 1 + i)
-	# plot raw pixel data
-	plt.imshow(maps[i], cmap=plt.get_cmap('gray'))
-# show the figure
-plt.show()
-
-# print(pixels.shape)
+# # print(pixels.shape)
 
 
