@@ -1,19 +1,21 @@
 import pygame 
-from pygame.locals import K_SPACE
+from pygame.locals import K_SPACE, RESIZABLE
 import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
+import scipy.ndimage as ndimage
 
 loaded_model = tf.keras.models.load_model('model')
 
-SCREENWIDTH = 28
-SCREENHEIGHT = 28
+SCREENWIDTH = 280
+SCREENHEIGHT = 280
 
 
 pygame.init()
 
 screen = pygame.display.set_mode((SCREENWIDTH,SCREENHEIGHT))
-screen.fill((0, 0,0))
+
+screen.fill((0, 0, 0))
 pygame.display.set_caption("Draw a Number")
 clock = pygame.time.Clock()
 
@@ -39,12 +41,14 @@ while loop:
 
     px, py = pygame.mouse.get_pos()
     if pygame.mouse.get_pressed() == (1,0,0):
-        pygame.draw.rect(screen, (192,192,192),(px,py,2,2))
+        pygame.draw.rect(screen, (192,192,192),(px,py,20,20))
 
     pygame.display.update()
     clock.tick(1000)
 
 pygame.quit()
+
+pixels = ndimage.interpolation.zoom(pixels,0.1)
 
 pixels = pixels.reshape(1, 28,28, 1)
 pixels = pixels/255.0
@@ -71,7 +75,7 @@ from keras.datasets import mnist
 
 maps = [pixels[0], train_X[0]]
 
-for i in range(2):
+for i in range(1):
 	# define subplot
 	plt.subplot(330 + 1 + i)
 	# plot raw pixel data
