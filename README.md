@@ -5,7 +5,7 @@ This is a digit recognition software trained using the thousands of handwritten 
 ![NeuralNet](https://user-images.githubusercontent.com/23701836/114323014-4af07300-9af1-11eb-9f37-7b9615334776.JPG)
 
 
-If the user wishes to stop the app, they can close the program and then see the pictures they have drawn and the respective guess from the neural net.
+If the user wishes to stop the app, they can close the program and then see the pictures they have drawn and their corresponding guesses.
 
 ![Guesses](https://user-images.githubusercontent.com/23701836/114323027-580d6200-9af1-11eb-8dc8-3a7df9484886.JPG)
 
