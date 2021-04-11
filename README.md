@@ -1,4 +1,4 @@
-"# NeuralText" 
+# Neural Text # 
 
 This is a digit recognition software trained using the thousands of handwritten images from the MNIST dataset. The application runs on a python module called Pygame and allows users to draw a digit between 0 - 9 using the cursor. Then, the network guesses the digit that they have drawn. 
 
